@@ -80,11 +80,11 @@ var carDetails = {
   Use object destructuring to save the property values from the object carDetails into new variables. 
 */
 
-let carColor = carDetails.color;
-let carMake = carDetails.make;
-let carModel = carDetails.model;
-let carYear = carDetails.year;
-console.log(carYear);
+let {color} = carDetails
+let {make} = carDetails
+let {model} = carDetails
+let {year} = carDetails
+console.log(color);
 
 //////////////////////////// PROBLEM 7 ////////////////////////////
 
@@ -95,9 +95,8 @@ console.log(carYear);
 */
 
 function greeting(obj) {
-  let title = obj.title;
-  let firstName = obj.firstName;
-  let lastName = obj.lastName;
+
+  let {title, firstName, lastName} = obj;
 
   // Do not edit the code below.
   return "Hello, " + title + " " + firstName + " " + lastName + "!";
@@ -114,15 +113,20 @@ function greeting(obj) {
   Sum up the values and return the total number.
 */
 
-const totalPopulation = (obj) => {
-  let utah = obj.utah;
-  let california = obj.california;
-  let texas = obj.texas;
-  let arizona = obj.arizona;
+const states = {
+  texas: 1,
+  california: 2,
+  utah: 3,
+  arizona: 4
+}
 
+const totalPopulation = (obj) => {
+  let {utah, california, texas, arizona} = obj;
   let statesTotal = utah + california + texas + arizona;
+
   return statesTotal;
 };
+console.log(totalPopulation(states));
 
 //////////////////////////// PROBLEM 9 ////////////////////////////
 
@@ -134,13 +138,21 @@ const totalPopulation = (obj) => {
   Push these new variables to an array and return the array. 
 */
 
+const food = {
+  carbs: 10,
+  fat: true,
+  protein: "A lot..."
+}
+
 const ingredients = (obj) => {
   let objList = [];
-  let carbs = obj.carb;
-  let fat = obj.fat;
-  let protein = obj.protein;
+ let {carbs, fat, protein} = obj
   objList.push(carbs, fat, protein);
+
+  return objList;
 };
+
+console.log(ingredients(food));
 
 //////////////////////////// PROBLEM 10 ////////////////////////////
 // Do not edit the code below.
@@ -153,7 +165,7 @@ var user = {
   username: "bryansmith33",
 };
 // Do not edit the code above.
-
+console.log(user);
 /*
   Let's say I, the user, decided to change my name and email address to the following:
   name -> 'Bryan G. Smith' and email -> 'bryan.smith@devmounta.in'.
@@ -235,7 +247,7 @@ console.log(myWizard.castSpell());
 */
 
 class Phone {
-  constructor(brand, model, storage, color, price, sold) {
+  constructor(brand, model, storage, color, price) {
     this.brand = brand;
     this.model = model;
     this.storage = storage;
@@ -282,7 +294,7 @@ console.log(samsung);
   Print the value of that phone's sell property to make sure it's been changed to true
 */
 
-apple.sell();
+console.log(apple.sell());
 console.log(apple);
 
 //////////////////////////// PROBLEM 15 ////////////////////////////
@@ -352,8 +364,8 @@ class Vehicle {
     this.mileage = mileage;
   }
   move(miles) {
-    let newMileage = this.mileage + miles;
-    return `Updated mileage is now ${newMileage}`;
+    this.mileage += miles;
+    return `Updated mileage is now ${this.mileage}`;
   }
 }
 
@@ -407,11 +419,11 @@ console.log(myFirstMotorcycle.move(500));
 */
 
 class Boat extends Vehicle {
-  constructor(name, type, isSeaworthy, capacity, color, mileage) {
+  constructor(name, type, capacity, color, mileage) {
 super(capacity, color, mileage);
 this.name = name;
 this.type = type;
-this.isSeaworthy = isSeaworthy;
+this.isSeaworthy = false;
   }
   checkSeaworthiness() {
 if(this.isSeaworthy) {
@@ -432,7 +444,7 @@ if(this.isSeaworthy) {
   properties except isSeaworthy -- make that one false. Call your variable myFirstBoat.
 */
 
-const myFirstBoat = new Boat("La Jinete del Mar", "powerboat", false, 8, "white", 1200);
+const myFirstBoat = new Boat("La Jinete del Mar", "powerboat", 8, "white", 1200);
 
 /*
   Call the checkSeaworthiness method on your new boat
